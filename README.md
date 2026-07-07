@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Load_Testing-Locust-5B8C5A?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/License-Apache_2.0-green?style=for-the-badge"/>
   
-  # Arabic Semantic Chunker (LLM-Based)
+  # Arabic-English Semantic Chunker (LLM-Based)
   
   **A Multilingual Semantic Text Segmentation System Powered by Large Language Models**
   
@@ -156,18 +156,25 @@ arabic-semantic-chunker/
 
 **Step 1: Clone the repository**
 ```bash
-git clone [https://github.com/Mo-Abdelfattah/arabic-semantic-chunker.git](https://github.com/Mo-Abdelfattah/arabic-semantic-chunker.git)
+git clone https://github.com/Mo-Abdelfattah/arabic-semantic-chunker.git
 cd arabic-semantic-chunker
 ```
 
-**Step 2: Install Dependencies**
+**Step 2: Install Unsloth**
+
+Unsloth must be installed first and separately. Refer to the [official Unsloth repository](https://github.com/unslothai/unsloth) for the version matching your CUDA setup. For Google Colab:
 ```bash
-# Note: Install numpy<2 first to avoid vLLM compatibility issues
+pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+```
+
+**Step 3: Install remaining dependencies**
+```bash
 pip install -r requirements.txt
 ```
-*(For Unsloth installation specific to your CUDA version, please refer to the [official Unsloth repository](https://github.com/unslothai/unsloth).)*
 
-**Step 3: Spin up the vLLM Server**
+> **Note:** `numpy<2` is pinned in `requirements.txt` to ensure compatibility with vLLM and CUDA 12. Installing Unsloth first avoids import-order conflicts with `torch` and `transformers`.
+
+**Step 4: Spin up the vLLM Server**
 ```bash
 BASE_MODEL="unsloth/Qwen2.5-1.5B-Instruct"
 ADAPTER_PATH="Mo-Abdelfattah/arabic-semantic-chunker-qwen1.5b"

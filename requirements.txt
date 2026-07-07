@@ -1,31 +1,27 @@
 # ============================================================
-# Arabic Semantic Chunker - Project Requirements
+# arabic-english-semantic-chunker - Project Requirements
 # ============================================================
 # Install all dependencies: pip install -r requirements.txt
 # ============================================================
 
-# --- Core Dependency ---
-# Critical: numpy must be < 2 for vLLM 0.7.2 compatibility with CUDA 12
+# --- Core: numpy must be < 2 for vLLM/CUDA 12 compatibility ---
 numpy<2
 
 # --- LLM Ecosystem & Fine-Tuning ---
 transformers==4.48.3
 datasets==3.2.0
-optimum==1.24.0
-accelerate>=0.26.0
-peft>=0.9.0
-torch>=2.1.0
+pydantic
+json-repair==0.29.1
 
 # --- High-Performance Inference Server ---
-vllm==0.7.2
+# Note: upgraded from 0.7.2 to 0.14.0 during development —
+# 0.14.0 resolved a LoRA engine crash under concurrent load
+# that was present in 0.7.2
+vllm==0.14.0
 
 # --- Synthetic Data Generation ---
 faker==35.2.0
 google-generativeai
-
-# --- Data Validation & JSON Parsing ---
-pydantic>=2.0.0
-json-repair==0.29.1
 
 # --- Load & Stress Testing ---
 locust
